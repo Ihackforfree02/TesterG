@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Void Interceptor: EX</title>
+    <title>Sky Ace: Aero-Strike</title>
     <link rel="stylesheet" href="style.css">
     <!-- Import Three.js -->
     <script type="importmap">
         {
             "imports": {
-                "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.184.0/three.module.js"
+                "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.module.js"
             }
         }
     </script>
@@ -16,66 +16,33 @@
 <body>
     <!-- Game HUD -->
     <div id="ui-layer">
-        <div id="crosshair"></div>
+        <div id="score-box">
+            <div class="label">SCORE</div>
+            <div id="score">0</div>
+        </div>
         
-        <div id="hud-header">
-            <div class="hud-stat">
-                <span class="label">SCORE</span>
-                <span class="value" id="score">0</span>
-            </div>
-            <div class="hud-stat">
-                <span class="label">SECTOR</span>
-                <span class="value" id="wave">1</span>
-            </div>
+        <div id="health-box">
+            <div class="label">HULL INTEGRITY</div>
+            <div class="bar-bg"><div id="health-bar"></div></div>
         </div>
 
-        <div id="hud-footer">
-            <div class="status-pod left">
-                <div class="label">SHIELDS</div>
-                <div class="bar-container">
-                    <div id="shield-bar" style="width: 100%;"></div>
-                </div>
-            </div>
-            <div class="status-pod right">
-                <div class="label">BOOST</div>
-                <div class="bar-container">
-                    <div id="boost-bar" style="width: 100%;"></div>
-                </div>
-            </div>
-        </div>
-        
-        <div id="damage-overlay"></div>
+        <div id="controls-hint">controls: W,A,S,D or ARROWS | SPACE to Fire</div>
     </div>
 
-    <!-- Hangar / Start Screen -->
-    <div id="start-screen" class="menu-overlay">
-        <div class="content-box">
-            <h1>VOID INTERCEPTOR <span style="color:#00f0ff; font-size: 0.5em;">EX</span></h1>
-            <p>Select Your Fighter Class</p>
-            
-            <div class="ship-selector">
-                <button class="ship-btn active" data-ship="viper">VIPER<br><span class="tiny">Speed / Agility</span></button>
-                <button class="ship-btn" data-ship="sentinel">SENTINEL<br><span class="tiny">Defense / Heavy</span></button>
-                <button class="ship-btn" data-ship="phantom">PHANTOM<br><span class="tiny">Stealth / Tech</span></button>
-            </div>
-
-            <div class="controls-guide">
-                <div class="key-group"><span>W,A,S,D</span> or <span>ARROWS</span> to Steer</div>
-                <div class="key-group"><span>SPACE</span> to Fire</div>
-                <div class="key-group"><span>SHIFT</span> for Turbo Boost</div>
-            </div>
-
-            <button id="launch-btn">LAUNCH MISSION</button>
+    <!-- Menus -->
+    <div id="start-screen" class="overlay">
+        <div class="card">
+            <h1>SKY ACE</h1>
+            <p>Intercept aerial targets. Dodge incoming debris.</p>
+            <button id="start-btn">ENGAGE THRUSTERS</button>
         </div>
     </div>
 
-    <!-- Game Over Screen -->
-    <div id="game-over" class="menu-overlay hidden">
-        <div class="content-box critical">
+    <div id="game-over" class="overlay hidden">
+        <div class="card fail">
             <h1>CRITICAL FAILURE</h1>
-            <p>Unit Destroyed. Data Uploaded.</p>
-            <h2 id="final-score">0</h2>
-            <button id="retry-btn">RE-DEPLOY NEW CLONE</button>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <button id="retry-btn">RESTART MISSION</button>
         </div>
     </div>
 
