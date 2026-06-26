@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Void Interceptor 3D</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.184.0/three.module.js"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Cockpit HUD -->
+    <div id="ui-layer">
+        <div id="crosshair"></div>
+        <div id="hud-top">
+            <div class="hud-panel">
+                <div class="label">SCORE</div>
+                <div class="value" id="score">0</div>
+            </div>
+            <div class="hud-panel">
+                <div class="label">WAVE</div>
+                <div class="value" id="wave">1</div>
+            </div>
+        </div>
+        
+        <div id="hud-bottom">
+            <div class="hud-panel left">
+                <div class="label">SHIELD INTEGRITY</div>
+                <div class="bar-frame"><div id="shield-bar"></div></div>
+            </div>
+            <div class="hud-panel right">
+                <div class="label">THRUST POWER</div>
+                <div class="bar-frame"><div id="energy-bar"></div></div>
+            </div>
+        </div>
+
+        <div id="warning-msg" class="hidden">WARNING: MISSILE LOCK</div>
+    </div>
+
+    <!-- Menu Screens -->
+    <div id="start-screen" class="screen">
+        <h1>VOID INTERCEPTOR</h1>
+        <p>Mouse: Steer Ship | Click: Blasters | W/S: Speed</p>
+        <button id="start-btn">LAUNCH FIGHTER</button>
+    </div>
+
+    <div id="game-over" class="screen hidden">
+        <h1 style="color: #ff3333">KILLED IN ACTION</h1>
+        <p>Final Score: <span id="final-score">0</span></p>
+        <button id="retry-btn">RE-DEPLOY</button>
+    </div>
+
+    <script type="module" src="game.js"></script>
+</body>
+</html>
