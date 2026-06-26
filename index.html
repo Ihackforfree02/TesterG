@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Void Interceptor 3D</title>
+    <title>Void Interceptor: EX</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Import Three.js -->
     <script type="importmap">
         {
             "imports": {
@@ -13,45 +14,69 @@
     </script>
 </head>
 <body>
-    <!-- Cockpit HUD -->
+    <!-- Game HUD -->
     <div id="ui-layer">
         <div id="crosshair"></div>
-        <div id="hud-top">
-            <div class="hud-panel">
-                <div class="label">SCORE</div>
-                <div class="value" id="score">0</div>
+        
+        <div id="hud-header">
+            <div class="hud-stat">
+                <span class="label">SCORE</span>
+                <span class="value" id="score">0</span>
             </div>
-            <div class="hud-panel">
-                <div class="label">WAVE</div>
-                <div class="value" id="wave">1</div>
+            <div class="hud-stat">
+                <span class="label">SECTOR</span>
+                <span class="value" id="wave">1</span>
+            </div>
+        </div>
+
+        <div id="hud-footer">
+            <div class="status-pod left">
+                <div class="label">SHIELDS</div>
+                <div class="bar-container">
+                    <div id="shield-bar" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div class="status-pod right">
+                <div class="label">BOOST</div>
+                <div class="bar-container">
+                    <div id="boost-bar" style="width: 100%;"></div>
+                </div>
             </div>
         </div>
         
-        <div id="hud-bottom">
-            <div class="hud-panel left">
-                <div class="label">SHIELD INTEGRITY</div>
-                <div class="bar-frame"><div id="shield-bar"></div></div>
+        <div id="damage-overlay"></div>
+    </div>
+
+    <!-- Hangar / Start Screen -->
+    <div id="start-screen" class="menu-overlay">
+        <div class="content-box">
+            <h1>VOID INTERCEPTOR <span style="color:#00f0ff; font-size: 0.5em;">EX</span></h1>
+            <p>Select Your Fighter Class</p>
+            
+            <div class="ship-selector">
+                <button class="ship-btn active" data-ship="viper">VIPER<br><span class="tiny">Speed / Agility</span></button>
+                <button class="ship-btn" data-ship="sentinel">SENTINEL<br><span class="tiny">Defense / Heavy</span></button>
+                <button class="ship-btn" data-ship="phantom">PHANTOM<br><span class="tiny">Stealth / Tech</span></button>
             </div>
-            <div class="hud-panel right">
-                <div class="label">THRUST POWER</div>
-                <div class="bar-frame"><div id="energy-bar"></div></div>
+
+            <div class="controls-guide">
+                <div class="key-group"><span>W,A,S,D</span> or <span>ARROWS</span> to Steer</div>
+                <div class="key-group"><span>SPACE</span> to Fire</div>
+                <div class="key-group"><span>SHIFT</span> for Turbo Boost</div>
             </div>
+
+            <button id="launch-btn">LAUNCH MISSION</button>
         </div>
-
-        <div id="warning-msg" class="hidden">WARNING: MISSILE LOCK</div>
     </div>
 
-    <!-- Menu Screens -->
-    <div id="start-screen" class="screen">
-        <h1>VOID INTERCEPTOR</h1>
-        <p>Mouse: Steer Ship | Click: Blasters | W/S: Speed</p>
-        <button id="start-btn">LAUNCH FIGHTER</button>
-    </div>
-
-    <div id="game-over" class="screen hidden">
-        <h1 style="color: #ff3333">KILLED IN ACTION</h1>
-        <p>Final Score: <span id="final-score">0</span></p>
-        <button id="retry-btn">RE-DEPLOY</button>
+    <!-- Game Over Screen -->
+    <div id="game-over" class="menu-overlay hidden">
+        <div class="content-box critical">
+            <h1>CRITICAL FAILURE</h1>
+            <p>Unit Destroyed. Data Uploaded.</p>
+            <h2 id="final-score">0</h2>
+            <button id="retry-btn">RE-DEPLOY NEW CLONE</button>
+        </div>
     </div>
 
     <script type="module" src="game.js"></script>
